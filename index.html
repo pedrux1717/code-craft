@@ -9,44 +9,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <style>
-    /* HOME-SPECIFIC */
     .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; padding: 80px; }
     .hero-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(14,165,233,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.03) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; }
     .hero-glow { position: absolute; inset: 0; background: radial-gradient(ellipse 55% 70% at 75% 50%, rgba(14,165,233,0.07) 0%, transparent 65%); pointer-events: none; }
     .hero-content { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1280px; margin: 0 auto; width: 100%; position: relative; z-index: 1; }
     .hero-label { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 24px; }
-    .hero-title { font-size: clamp(2.8rem, 4.5vw, 4.4rem); font-weight: 800; line-height: 1.04; letter-spacing: -2.5px; margin-bottom: 24px; }
+    .hero-title { font-size: clamp(2.4rem, 4.5vw, 4.4rem); font-weight: 800; line-height: 1.04; letter-spacing: -2.5px; margin-bottom: 24px; }
     .hero-title span { color: var(--accent); }
     .hero-desc { color: var(--text-muted); font-size: 1rem; line-height: 1.85; max-width: 460px; margin-bottom: 40px; }
     .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
-    .terminal { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(14,165,233,0.08); width: 100%; max-width: 520px; margin-left: auto; }
+    .terminal { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.6); width: 100%; }
     .t-bar { background: #0a0f1a; padding: 12px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
     .t-title { font-family: var(--font-mono); font-size: 0.63rem; color: var(--text-muted); margin-left: 8px; }
     .t-body { padding: 24px; font-family: var(--font-mono); font-size: 0.77rem; line-height: 1.9; overflow-x: auto; }
     .cursor { color: var(--accent); animation: blink 1s step-end infinite; }
     @keyframes blink { 50%{ opacity:0; } }
-    .stats-bar { display: flex; align-items: stretch; max-width: 1280px; margin: 60px auto 0; width: 100%; border: 1px solid var(--border); background: var(--surface); position: relative; z-index: 1; }
-    .stat { padding: 28px 48px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
-    .stat-num { font-family: var(--font-mono); font-size: 1.8rem; font-weight: 700; color: var(--accent); line-height: 1; }
-    .stat-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
+    .stats-bar { display: flex; align-items: stretch; max-width: 1280px; margin: 60px auto 0; width: 100%; border: 1px solid var(--border); background: var(--surface); position: relative; z-index: 1; flex-wrap: wrap; }
+    .stat { padding: 24px 36px; flex: 1; min-width: 120px; display: flex; flex-direction: column; gap: 4px; }
+    .stat-num { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); }
     .stat-divider { width: 1px; background: var(--border); }
-    /* capabilities grid */
     .cap-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
     .cap-card { background: var(--bg); border: 1px solid var(--border); padding: 40px; position: relative; overflow: hidden; transition: border-color 0.2s, transform 0.2s; }
     .cap-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--accent); transform: scaleX(0); transition: transform 0.3s; }
     .cap-card:hover::before { transform: scaleX(1); }
     .cap-card:hover { border-color: rgba(14,165,233,0.25); transform: translateY(-3px); }
     .cap-icon { font-size: 2rem; margin-bottom: 20px; line-height: 1; }
-    .cap-card h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 12px; }
+    .cap-card h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 12px; }
     .cap-card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.8; }
-    /* partner strip */
     .partner-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-    .partner-logo-box { background-color: (14,165,233,0.25); border-radius: 8px; padding: 32px 48px; display: flex; align-items: center; justify-content: center; min-height: 120px; }
-    .sorint-logo { width: 85%; background-color: (14,165,233,0.25);}
+     .partner-logo-box { background-color: (14,165,233,0.25); border-radius: 8px; padding: 32px 48px; display: flex; align-items: center; justify-content: center; min-height: 120px; }
+      .sorint-logo { width: 85%; background-color: (14,165,233,0.25);}
     .sorint-fallback { display: none; font-family: var(--font-display); font-weight: 800; font-size: 1.8rem; color: #1a1a2e; letter-spacing: -1px; }
     .sorint-fallback span { color: #0ea5e9; }
     .partner-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
     .partner-tags span { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 12px; border: 1px solid var(--border); color: var(--text-muted); background: var(--surface2); }
+    @media (max-width: 900px) {
+      .hero { padding: 48px 24px; min-height: auto; padding-top: 80px; }
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .terminal { display: none; }
+      .stat-divider { display: none; }
+      .stats-bar { margin-top: 32px; }
+      .cap-grid { grid-template-columns: 1fr; }
+      .partner-strip { grid-template-columns: 1fr; gap: 24px; }
+    }
   </style>
 </head>
 <body>
@@ -55,10 +61,11 @@
     <div class="header-inner">
       <a href="index.html" class="logo">CODE<span>CRAFT</span></a>
       <div class="header-badge">AIROP v1.0</div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
   </header>
-  <nav class="navbar">
-    <ul>
+  <nav class="navbar" id="navbar">
+    <ul id="nav-menu">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="progetto.html">Il Progetto</a></li>
       <li><a href="architettura.html">Architettura</a></li>
@@ -68,7 +75,6 @@
   </nav>
   <main class="page-body">
 
-    <!-- HERO -->
     <div class="hero">
       <div class="hero-bg"></div>
       <div class="hero-glow"></div>
@@ -76,90 +82,83 @@
         <div>
           <p class="hero-label">// Autonomous IT Resilience &amp; Optimization Platform</p>
           <h1 class="hero-title">Infrastruttura IT<br><span>autonoma</span>,<br>resiliente.</h1>
-          <p class="hero-desc">AIROP combina Cloud, DevOps, Intelligenza Artificiale e Green IT per rendere le infrastrutture aziendali capaci di prevedersi, ripararsi e ottimizzarsi da sole — senza intervento umano.</p>
+          <p class="hero-desc">AIROP combina Cloud, DevOps e Intelligenza Artificiale per rendere le infrastrutture IT aziendali capaci di monitorarsi, rilevare anomalie e intervenire autonomamente — con supervisione admin.</p>
           <div class="hero-actions">
             <a href="progetto.html" class="btn-primary">Scopri il progetto</a>
-            <a href="architettura.html" class="btn-ghost">Vedi l'architettura →</a>
+            <a href="architettura.html" class="btn-ghost">Architettura →</a>
           </div>
         </div>
         <div>
           <div class="terminal">
-            <div class="t-bar">
-              <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
-              <span class="t-title">airop — agent@prod-server-01</span>
-            </div>
-            <pre class="t-body"><span class="t-dim">$</span> python agentv2.py --config config.yaml
+            <div class="t-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="t-title">airop — agent@prod-server-01</span></div>
+            <pre class="t-body"><span class="t-dim">$</span> python agentv2.py
 
 <span class="t-green">✓</span> Agent V2 initialized
-  Backend: <span class="t-blue">http://api.airop.io:5000</span>
-  Hostname: <span class="t-blue">prod-server-01</span>
+  Backend: <span class="t-blue">http://localhost:5000</span>
   Interval: <span class="t-yellow">5s</span>
 
-<span class="t-green">✓</span> Heartbeat ricevuto
-<span class="t-green">✓</span> cpu=<span class="t-yellow">42.1%</span>  ram=<span class="t-yellow">61.3%</span>  disk=<span class="t-yellow">38.2%</span>
+<span class="t-green">✓</span> Heartbeat inviato
+<span class="t-green">✓</span> cpu=<span class="t-yellow">42.1%</span>  ram=<span class="t-yellow">61.3%</span>
 
-<span class="t-green">✓</span> AI Engine: <span class="t-blue">Nessuna anomalia</span>
-<span class="t-dim">  IsolationForest contamination=0.1</span>
-<span class="t-dim">  LinearRegression trend: stabile</span>
+<span class="t-green">✓</span> AI Engine: analisi in corso...
+<span class="t-dim">  IsolationForest: no anomalie</span>
 
-<span class="t-green">✓</span> Self-healing: <span class="t-blue">Monitoraggio attivo</span>
-<span class="t-dim">  Regole valutate: 12 | Azioni: 0</span>
+<span class="t-green">✓</span> AI Decision pending: <span class="t-yellow">0</span>
+<span class="t-dim">  Self-healing: attesa approvazione admin</span>
 
 <span class="cursor">▋</span></pre>
           </div>
         </div>
       </div>
       <div class="stats-bar">
-        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Componenti</span></div>
+        <div class="stat"><span class="stat-num">6</span><span class="stat-label">Componenti</span></div>
         <div class="stat-divider"></div>
         <div class="stat"><span class="stat-num">5s</span><span class="stat-label">Poll Interval</span></div>
         <div class="stat-divider"></div>
         <div class="stat"><span class="stat-num">AI</span><span class="stat-label">Anomaly Detection</span></div>
         <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Self-Healing</span></div>
+        <div class="stat"><span class="stat-num">Admin</span><span class="stat-label">Approval System</span></div>
         <div class="stat-divider"></div>
-        <div class="stat"><span class="stat-num">20+</span><span class="stat-label">API Endpoints</span></div>
+        <div class="stat"><span class="stat-num">25+</span><span class="stat-label">API Endpoints</span></div>
       </div>
     </div>
 
-    <!-- COSA FA -->
     <div class="alt-bg">
       <div class="section-inner">
         <div class="section-head">
           <span class="section-label">// Capabilities</span>
           <h2>Cosa fa AIROP</h2>
-          <p>Un sistema distribuito che raccoglie metriche, le analizza con ML, interviene autonomamente e mostra tutto in real-time.</p>
+          <p>Un sistema distribuito che raccoglie metriche, le analizza con ML, propone azioni all'admin e mostra tutto in real-time.</p>
         </div>
         <div class="cap-grid">
           <div class="cap-card">
             <div class="cap-icon" style="color:var(--accent)">⬡</div>
             <h3>Raccolta Metriche Distribuita</h3>
-            <p>Gli Agent Python raccolgono ogni 5 secondi CPU, RAM, disco, rete e processi da ogni host della rete. Supporto multi-agent con configurazione YAML e retry automatico. Ogni agent invia heartbeat periodici per segnalare il proprio stato.</p>
-            <div class="chips"><span class="chip">psutil</span><span class="chip">YAML config</span><span class="chip">Heartbeat</span><span class="chip">Retry logic</span></div>
+            <p>Agent Python headless raccoglie ogni 5 secondi CPU, RAM, disco, rete e processi. Heartbeat periodico per segnalare stato Online/Offline. Configurazione via YAML con retry automatico.</p>
+            <div class="chips"><span class="chip">psutil</span><span class="chip">YAML config</span><span class="chip">Heartbeat</span></div>
           </div>
-          <div class="cap-card" style="--accent:var(--accent-purple)">
+          <div class="cap-card">
             <div class="cap-icon" style="color:var(--accent-purple)">◎</div>
             <h3>AI Anomaly Detection</h3>
-            <p>L'AI Engine analizza le metriche con Isolation Forest per rilevare anomalie e Linear Regression per prevedere trend. Genera alert automatici su CPU, RAM e disco prima che il problema diventi critico.</p>
-            <div class="chips"><span class="chip chip--purple">Isolation Forest</span><span class="chip chip--purple">Linear Regression</span><span class="chip chip--purple">sklearn</span></div>
+            <p>Isolation Forest rileva anomalie ogni 5 minuti. L'AI engine (Ollama/OpenAI) genera raccomandazioni con confidence score. Ogni decisione AI attende l'approvazione dell'admin prima di essere eseguita.</p>
+            <div class="chips"><span class="chip chip--purple">Isolation Forest</span><span class="chip chip--purple">Ollama</span><span class="chip chip--purple">OpenAI</span></div>
           </div>
-          <div class="cap-card" style="--accent:var(--accent-warm)">
+          <div class="cap-card">
             <div class="cap-icon" style="color:var(--accent-warm)">↺</div>
-            <h3>Self-Healing Automatico</h3>
-            <p>L'Automation Engine applica regole configurabili: kill process, restart service, scale up/down, clear cache. In caso di anomalia non risolvibile, escalation automatica all'amministratore con tracking completo di tutte le azioni.</p>
-            <div class="chips"><span class="chip chip--orange">Kill Process</span><span class="chip chip--orange">Restart Service</span><span class="chip chip--orange">Scale Up/Down</span></div>
+            <h3>Admin Approval Workflow</h3>
+            <p>Nessuna azione automatica senza supervisione. L'admin rivede ogni decisione AI con reasoning e confidence score, approva o rifiuta, poi esegue. Audit trail completo di tutte le operazioni.</p>
+            <div class="chips"><span class="chip chip--orange">Role-Based</span><span class="chip chip--orange">Audit Log</span><span class="chip chip--orange">Session Auth</span></div>
           </div>
-          <div class="cap-card" style="--accent:var(--accent-green)">
+          <div class="cap-card">
             <div class="cap-icon" style="color:var(--accent-green)">▦</div>
             <h3>Dashboard Real-Time</h3>
-            <p>Interfaccia React con aggiornamento automatico ogni 10 secondi. Grafici interattivi per CPU e RAM, distribuzione alert per severità, stato agenti connessi e storico azioni di automazione.</p>
+            <p>React 18 con dark/light mode, aggiornamento ogni 15 secondi. Grafici CPU/RAM, gestione alert, kill process (admin only), pagina AI Approvals con decisioni pendenti.</p>
             <div class="chips"><span class="chip chip--green">React 18</span><span class="chip chip--green">Recharts</span><span class="chip chip--green">Material-UI</span></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PARTNER -->
     <div class="section-inner">
       <div class="section-head">
         <span class="section-label">// Azienda Partner</span>
@@ -174,12 +173,11 @@
           </div>
           <div class="partner-tags">
             <span>Cloud</span><span>DevOps</span><span>Cybersecurity</span>
-            <span>AI</span><span>Digital Transformation</span><span>~1000 professionisti</span><span>30+ Paesi</span>
+            <span>AI</span><span>Digital Transformation</span><span>~1000 professionisti</span>
           </div>
         </div>
         <div>
-          <p style="color:var(--text-muted);line-height:1.9;margin-bottom:16px;font-size:0.97rem;">Fondata nel 1985 a Grassobbio, Sorint.lab è una società IT globale specializzata in digital transformation. Con quasi 1000 professionisti distribuiti in oltre 30 Paesi, è leader in sviluppo software, cloud architecture, DevOps, cybersecurity e AI.</p>
-          <p style="color:var(--text-muted);line-height:1.9;margin-bottom:32px;font-size:0.97rem;">La loro missione è trasformare le idee in risultati concreti, guidando le aziende nella transizione digitale attraverso tecnologia che promuove innovazione e benessere delle persone.</p>
+          <p style="color:var(--text-muted);line-height:1.9;margin-bottom:16px;font-size:0.97rem;">Fondata nel 1985 a Grassobbio, Sorint.lab è una società IT globale con quasi 1000 professionisti in oltre 30 Paesi, leader in sviluppo software, cloud, DevOps, cybersecurity e AI.</p>
           <a href="https://www.sorint.com" target="_blank" class="btn-primary">Visita sorint.com →</a>
         </div>
       </div>
@@ -195,7 +193,7 @@
         <a href="api.html">API</a>
         <a href="contatti.html">Contatti</a>
       </nav>
-      <span class="footer-copy">2025 — AIROP by CodeCraft</span>
+      <span class="footer-copy">© 2026 AIROP by CodeCraft</span>
     </div>
   </footer>
 </div>

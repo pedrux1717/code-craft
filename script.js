@@ -1,19 +1,24 @@
-const sections = document.querySelectorAll(".section");
-const links = document.querySelectorAll(".navbar a");
+// Menu mobile
+function toggleMenu() {
+  const menu = document.getElementById('nav-menu');
+  if (menu) menu.classList.toggle('open');
+}
 
-const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        links.forEach(link => link.classList.remove("active"));
-        const activeLink = document.querySelector(
-          `.navbar a[href="#${entry.target.id}"]`
-        );
-        if (activeLink) activeLink.classList.add("active");
-      }
+// Chiudi menu cliccando link
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#nav-menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      const menu = document.getElementById('nav-menu');
+      if (menu) menu.classList.remove('open');
     });
-  },
-  { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
-);
+  });
+});
 
-sections.forEach(section => observer.observe(section));
+// Active nav link per pagina corrente
+const currentPage = location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.navbar a').forEach(a => {
+  const href = a.getAttribute('href');
+  if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+    a.classList.add('active');
+  }
+});

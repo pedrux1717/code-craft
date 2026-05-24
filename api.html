@@ -10,33 +10,34 @@
   <link rel="stylesheet" href="style.css">
   <style>
     .page-hero { padding: 100px 80px 64px; max-width: 1280px; margin: 0 auto; }
-    .page-hero h1 { font-size: clamp(2.5rem, 4.5vw, 4rem); font-weight: 800; letter-spacing: -2px; line-height: 1.05; margin-bottom: 20px; }
+    .page-hero h1 { font-size: clamp(2.2rem, 4.5vw, 4rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 16px; }
     .page-hero p { color: var(--text-muted); font-size: 1rem; line-height: 1.85; max-width: 600px; }
-    .api-layout { display: grid; grid-template-columns: 220px 1fr; gap: 0; max-width: 1280px; margin: 0 auto; border-top: 1px solid var(--border); }
-    .api-sidebar { border-right: 1px solid var(--border); padding: 48px 32px; position: sticky; top: 144px; align-self: start; }
-    .api-sidebar h4 { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 16px; }
-    .api-sidebar a { display: block; font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); text-decoration: none; padding: 8px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
+    .api-layout { display: grid; grid-template-columns: 200px 1fr; gap: 0; max-width: 1280px; margin: 0 auto; border-top: 1px solid var(--border); min-height: 70vh; }
+    .api-sidebar { border-right: 1px solid var(--border); padding: 40px 24px; position: sticky; top: 144px; align-self: start; }
+    .api-sidebar h4 { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; margin-top: 24px; }
+    .api-sidebar h4:first-child { margin-top: 0; }
+    .api-sidebar a { display: block; font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); text-decoration: none; padding: 7px 0; border-bottom: 1px solid var(--border); transition: color 0.2s; }
     .api-sidebar a:hover { color: var(--accent); }
-    .api-sidebar a:last-child { border-bottom: none; }
-    .api-content { padding: 48px 64px 80px; }
-    .api-group { margin-bottom: 72px; }
-    .api-group-title { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
-    .api-group-base { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent); background: rgba(14,165,233,0.08); padding: 4px 10px; font-weight: 400; }
-    .api-group-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 24px; }
+    .api-content { padding: 48px 56px 80px; }
+    .api-group { margin-bottom: 64px; }
+    .api-group-title { font-size: 1.3rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; padding-bottom: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .api-group-base { font-family: var(--font-mono); font-size: 0.68rem; color: var(--accent); background: rgba(14,165,233,0.08); padding: 4px 10px; font-weight: 400; }
+    .api-group-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; margin-bottom: 20px; }
     .endpoint { background: var(--surface2); border: 1px solid var(--border); margin-bottom: 2px; overflow: hidden; }
-    .ep-header { display: flex; align-items: center; gap: 16px; padding: 16px 24px; cursor: pointer; transition: background 0.15s; user-select: none; }
+    .ep-header { display: flex; align-items: center; gap: 14px; padding: 14px 20px; cursor: pointer; transition: background 0.15s; user-select: none; flex-wrap: wrap; }
     .ep-header:hover { background: rgba(255,255,255,0.02); }
-    .ep-path { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text); flex: 1; }
-    .ep-summary { font-size: 0.82rem; color: var(--text-muted); }
-    .ep-body { border-top: 1px solid var(--border); padding: 24px; display: none; }
+    .ep-path { font-family: var(--font-mono); font-size: 0.78rem; color: var(--text); flex: 1; min-width: 180px; }
+    .ep-summary { font-size: 0.8rem; color: var(--text-muted); }
+    .ep-auth { font-family: var(--font-mono); font-size: 0.58rem; padding: 2px 7px; border: 1px solid rgba(251,191,36,0.3); color: #fbbf24; background: rgba(251,191,36,0.05); }
+    .ep-body { border-top: 1px solid var(--border); padding: 20px; display: none; }
     .ep-body.open { display: block; }
-    .ep-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; margin-bottom: 16px; }
-    .ep-section { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; margin-top: 16px; }
-    /* quick start */
-    .qs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
-    .qs-card { background: var(--surface2); border: 1px solid var(--border); padding: 32px; }
-    .qs-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-    .qs-card p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.75; margin-bottom: 16px; }
+    .ep-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.8; margin-bottom: 12px; }
+    @media (max-width: 900px) {
+      .page-hero { padding: 64px 24px 40px; }
+      .api-layout { grid-template-columns: 1fr; }
+      .api-sidebar { display: none; }
+      .api-content { padding: 32px 24px 64px; }
+    }
   </style>
 </head>
 <body>
@@ -45,296 +46,251 @@
     <div class="header-inner">
       <a href="index.html" class="logo">CODE<span>CRAFT</span></a>
       <div class="header-badge">AIROP v1.0</div>
+      <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </div>
   </header>
-  <nav class="navbar">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="progetto.html">Il Progetto</a></li>
-      <li><a href="architettura.html">Architettura</a></li>
-      <li><a href="api.html" class="active">API & Docs</a></li>
-      <li><a href="contatti.html">Contatti</a></li>
-    </ul>
-  </nav>
+  <nav class="navbar"><ul id="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="progetto.html">Il Progetto</a></li>
+    <li><a href="architettura.html">Architettura</a></li>
+    <li><a href="api.html" class="active">API & Docs</a></li>
+    <li><a href="contatti.html">Contatti</a></li>
+  </ul></nav>
   <main class="page-body">
 
     <div class="page-hero">
       <span class="section-label">// Documentazione API</span>
       <h1>API Reference</h1>
-      <p>Tutti gli endpoint del backend AIROP. Base URL: <code style="font-family:var(--font-mono);color:var(--accent);font-size:0.9em">http://localhost:5000</code></p>
+      <p>Tutti gli endpoint del backend AIROP. Base URL: <code style="font-family:var(--font-mono);color:var(--accent)">http://localhost:5000</code> — Gli endpoint protetti richiedono una sessione autenticata.</p>
     </div>
 
     <div class="api-layout">
       <aside class="api-sidebar">
         <h4>Risorse</h4>
+        <a href="#auth">Authentication</a>
         <a href="#system">System Metrics</a>
+        <a href="#process">Process</a>
         <a href="#agent">Agents</a>
         <a href="#alert">Alerts</a>
-        <a href="#automation">Automation</a>
-        <a href="#process">Process</a>
-        <h4 style="margin-top:24px">Quick Start</h4>
-        <a href="#quickstart">Esempi curl</a>
-        <a href="#config">Configurazione</a>
+        <a href="#aidecision">AI Decisions</a>
+        <h4>Guide</h4>
+        <a href="#quickstart">Quick Start</a>
       </aside>
 
       <div class="api-content">
 
+        <!-- AUTH -->
+        <div class="api-group" id="auth">
+          <h3 class="api-group-title">Authentication <span class="api-group-base">/api/auth</span></h3>
+          <p class="api-group-desc">Autenticazione session-based. Il login crea un cookie HTTP-only con timeout idle di 8 ore. SHA256 password hashing.</p>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/auth/login</span><span class="ep-summary">Login utente</span></div>
+            <div class="ep-body"><p class="ep-desc">Autentica l'utente. Crea una sessione con cookie HTTP-only. Restituisce username, isAdmin e redirect.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"username"</span>: <span class="str">"admin"</span>, <span class="str">"password"</span>: <span class="str">"YourPass123"</span> }
+
+<span class="cmt">// Response</span>
+{ <span class="str">"success"</span>: <span class="kw">true</span>, <span class="str">"user"</span>: {
+  <span class="str">"id"</span>: <span class="val">1</span>, <span class="str">"username"</span>: <span class="str">"admin"</span>, <span class="str">"isAdmin"</span>: <span class="kw">true</span>
+}}</pre></div></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/auth/logout</span><span class="ep-summary">Logout</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Termina la sessione corrente e invalida il cookie.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/auth/verify</span><span class="ep-summary">Verifica sessione</span></div>
+            <div class="ep-body"><p class="ep-desc">Controlla se la sessione corrente è valida. Usato dal frontend per proteggere le route.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/auth/is-admin</span><span class="ep-summary">Check ruolo admin</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Restituisce true se l'utente corrente ha ruolo Admin.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/auth/init-admin</span><span class="ep-summary">Crea primo admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Crea il primo utente admin. Funziona solo se il DB è vuoto (nessun utente esistente).</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"username"</span>: <span class="str">"admin"</span>, <span class="str">"password"</span>: <span class="str">"SecurePass123!"</span>,
+  <span class="str">"email"</span>: <span class="str">"admin@airop.local"</span> }</pre></div></div>
+          </div>
+        </div>
+
         <!-- SYSTEM -->
         <div class="api-group" id="system">
           <h3 class="api-group-title">System Metrics <span class="api-group-base">/api/system</span></h3>
-          <p class="api-group-desc">Endpoint per la ricezione e consultazione delle metriche di sistema inviate dagli agent.</p>
-
+          <p class="api-group-desc">Ricezione e consultazione delle metriche di sistema inviate dagli agent. Tutti gli endpoint richiedono autenticazione.</p>
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method post">POST</span>
-              <span class="ep-path">/api/system</span>
-              <span class="ep-summary">Invia metriche base</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Riceve le metriche base da un agent: CPU, RAM, hostname. Usato per il monitoraggio essenziale.</p>
-              <p class="ep-section">Body (JSON)</p>
-              <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
-              <pre>{ <span class="str">"cpuPercent"</span>: <span class="val">45.5</span>, <span class="str">"ramPercent"</span>: <span class="val">60.2</span>, <span class="str">"hostname"</span>: <span class="str">"prod-01"</span> }</pre></div>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/system</span><span class="ep-summary">Invia metriche</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Riceve metriche dall'agent: hostname, CPU%, RAM%, disco, timestamp. Usato da Agent v2.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"hostname"</span>: <span class="str">"server-01"</span>,
+  <span class="str">"cpuPercent"</span>: <span class="val">45.5</span>,
+  <span class="str">"ramPercent"</span>: <span class="val">62.3</span>,
+  <span class="str">"diskPercent"</span>: <span class="val">78.1</span>,
+  <span class="str">"timestamp"</span>: <span class="str">"2026-05-24T10:30:45Z"</span> }</pre></div></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method post">POST</span>
-              <span class="ep-path">/api/system/advanced</span>
-              <span class="ep-summary">Invia metriche avanzate</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Riceve il set completo di metriche: CPU, RAM, disco, rete, load average, processi. Utilizzato dall'Agent v2.</p>
-              <div class="chips"><span class="chip">Usato da Agent v2</span></div>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/system/latest</span><span class="ep-summary">Ultime metriche</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Ultime metriche da tutti gli host. Usato dalla Dashboard ogni 15 secondi e dall'AI Engine.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/system/latest</span>
-              <span class="ep-summary">Ultimi dati di sistema</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Restituisce le metriche più recenti da tutti gli host. Usato dalla Dashboard per aggiornamento real-time ogni 10 secondi.</p>
-              <div class="chips"><span class="chip">Usato da Dashboard</span><span class="chip">Usato da AI Engine</span></div>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/system/stats</span><span class="ep-summary">Statistiche generali</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Statistiche aggregate: numero metriche, host attivi, medie CPU/RAM. Utile per health check.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/system/host/{hostname}</span>
-              <span class="ep-summary">Metriche per host specifico</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Restituisce lo storico delle metriche per un singolo host. Usato dall'AI Engine per analisi su 24 ore.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/system/{hostname}</span><span class="ep-summary">Metriche per host</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Storico metriche per un host specifico. Usato dall'AI Engine per analisi su finestre temporali.</p></div>
           </div>
+        </div>
 
+        <!-- PROCESS -->
+        <div class="api-group" id="process">
+          <h3 class="api-group-title">Process <span class="api-group-base">/api/process</span></h3>
+          <p class="api-group-desc">Gestione processi. Endpoint riservati solo agli amministratori.</p>
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/system/stats</span>
-              <span class="ep-summary">Statistiche generali</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Statistiche aggregate su tutti gli host: numero metriche, host attivi, valori medi CPU/RAM.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/process</span><span class="ep-summary">Lista processi</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Lista processi attivi sull'host. Visibile solo agli admin nella pagina Anomaly Detection.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/process/kill</span><span class="ep-summary">Kill processo</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Termina un processo per PID. Richiede sessione admin attiva. Restituisce 403 per non-admin.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"pid"</span>: <span class="val">1234</span>, <span class="str">"reason"</span>: <span class="str">"High CPU usage"</span> }
+
+<span class="cmt">// Admin → 200 OK</span>
+{ <span class="str">"success"</span>: <span class="kw">true</span>, <span class="str">"message"</span>: <span class="str">"Process terminated"</span> }
+
+<span class="cmt">// Non-Admin → 403</span>
+{ <span class="str">"success"</span>: <span class="kw">false</span>, <span class="str">"message"</span>: <span class="str">"Admin required"</span> }</pre></div></div>
           </div>
         </div>
 
         <!-- AGENTS -->
         <div class="api-group" id="agent">
           <h3 class="api-group-title">Agents <span class="api-group-base">/api/agent</span></h3>
-          <p class="api-group-desc">Gestione degli agent connessi. Un agent diventa Offline se non invia heartbeat per più di 5 minuti.</p>
-
+          <p class="api-group-desc">Gestione degli agent. Un agent diventa Offline se il heartbeat manca per più di 5 minuti.</p>
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method post">POST</span>
-              <span class="ep-path">/api/agent/heartbeat</span>
-              <span class="ep-summary">Heartbeat agent</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Segnala che l'agent è ancora attivo. Se l'agent non esiste viene creato automaticamente. Aggiorna LastHeartbeat e Status = "Online".</p>
-              <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
-              <pre>{ <span class="str">"hostname"</span>: <span class="str">"prod-01"</span>, <span class="str">"agentVersion"</span>: <span class="str">"2.0"</span> }</pre></div>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/agent/heartbeat</span><span class="ep-summary">Heartbeat</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Segnala che l'agent è attivo. Se l'agent non esiste viene creato. Aggiorna LastHeartbeat e Status=Online.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"hostname"</span>: <span class="str">"prod-01"</span>, <span class="str">"agentVersion"</span>: <span class="str">"2.0"</span> }</pre></div></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/agent</span>
-              <span class="ep-summary">Lista tutti gli agent</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Lista tutti gli agent con stato, ultimo heartbeat e metriche associate. Aggiorna automaticamente lo status a Offline se il heartbeat manca da più di 5 minuti.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/agent</span><span class="ep-summary">Lista agent</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Lista tutti gli agent. Aggiorna automaticamente a Offline se heartbeat mancante &gt; 5 min.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/agent/{hostname}</span>
-              <span class="ep-summary">Dettagli agent specifico</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Restituisce stato e dettagli di un agent specifico. 404 se l'hostname non esiste.</p>
-            </div>
-          </div>
-
-          <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method del">DEL</span>
-              <span class="ep-path">/api/agent/{hostname}</span>
-              <span class="ep-summary">Elimina agent</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Rimuove un agent dal database. Operazione permanente.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/agent/{hostname}</span><span class="ep-summary">Dettagli agent</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Dettagli e stato di un agent specifico per hostname.</p></div>
           </div>
         </div>
 
         <!-- ALERTS -->
         <div class="api-group" id="alert">
           <h3 class="api-group-title">Alerts <span class="api-group-base">/api/alert</span></h3>
-          <p class="api-group-desc">Sistema di alerting con tre livelli di severità: CRITICAL, WARNING, INFO. Gli alert vengono generati dall'AI Engine o manualmente.</p>
-
+          <p class="api-group-desc">Alert con tre severità: CRITICAL, WARNING, INFO. Generati dall'AI Engine o manualmente.</p>
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method post">POST</span>
-              <span class="ep-path">/api/alert</span>
-              <span class="ep-summary">Crea nuovo alert</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Crea un alert. Generato automaticamente dall'AI Engine quando rileva anomalie o trend critici.</p>
-              <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
-              <pre>{
-  <span class="str">"hostname"</span>: <span class="str">"prod-01"</span>,
-  <span class="str">"alertType"</span>: <span class="str">"HIGH_CPU"</span>,
-  <span class="str">"message"</span>: <span class="str">"CPU al 92% da 5 minuti"</span>,
-  <span class="str">"severity"</span>: <span class="str">"CRITICAL"</span>
-}</pre></div>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/alert</span><span class="ep-summary">Crea alert</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Crea un nuovo alert. Tipicamente chiamato dall'AI Engine su anomalia rilevata.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/alert</span>
-              <span class="ep-summary">Lista alert (con filtri)</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Lista alert con supporto filtri. Query param: <code style="font-family:var(--font-mono);color:var(--accent)">?resolved=false</code> per solo alert attivi.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/alert</span><span class="ep-summary">Lista alert</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Tutti gli alert. Query param: <code style="font-family:var(--font-mono);color:var(--accent)">?resolved=false</code> per solo attivi.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/alert/host/{hostname}</span>
-              <span class="ep-summary">Alert per host</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Tutti gli alert (attivi e risolti) per un host specifico.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/alert/recent</span><span class="ep-summary">Alert recenti</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Alert delle ultime ore. Usato dalla dashboard per il widget alert recenti.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method put">PUT</span>
-              <span class="ep-path">/api/alert/{id}/resolve</span>
-              <span class="ep-summary">Risolvi alert</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Marca un alert come risolto. IsResolved = true, ResolvedAt = DateTime.UtcNow.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method put">PUT</span><span class="ep-path">/api/alert/{id}/resolve</span><span class="ep-summary">Risolvi alert</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Marca un alert come risolto. IsResolved=true, ResolvedAt=DateTime.UtcNow.</p></div>
           </div>
         </div>
 
-        <!-- AUTOMATION -->
-        <div class="api-group" id="automation">
-          <h3 class="api-group-title">Automation <span class="api-group-base">/api/automation</span></h3>
-          <p class="api-group-desc">Gestione delle azioni di self-healing. Le azioni vengono create dall'Automation Engine e tracciate nel loro ciclo di vita: PENDING → EXECUTING → DONE/FAILED.</p>
-
+        <!-- AI DECISIONS -->
+        <div class="api-group" id="aidecision">
+          <h3 class="api-group-title">AI Decisions <span class="api-group-base">/api/aidecision</span></h3>
+          <p class="api-group-desc">Decisioni AI con workflow di approvazione admin. Nessuna azione viene eseguita senza approvazione esplicita. Status: PENDING → APPROVED/REJECTED → EXECUTED/FAILED.</p>
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method post">POST</span>
-              <span class="ep-path">/api/automation/action</span>
-              <span class="ep-summary">Crea azione di automazione</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Registra una nuova azione. Tipi: KILL_PROCESS, RESTART_SERVICE, SCALE_UP, SCALE_DOWN, CLEAR_CACHE, ESCALATE.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/aidecision/generate</span><span class="ep-summary">Genera decisione AI</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">L'LLM analizza il contesto e genera una raccomandazione con confidence score 0–100%. Salvata come PENDING.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"hostname"</span>: <span class="str">"server-01"</span>,
+  <span class="str">"alertType"</span>: <span class="str">"HIGH_CPU"</span>,
+  <span class="str">"metrics"</span>: { <span class="str">"cpu"</span>: <span class="val">95</span>, <span class="str">"memory"</span>: <span class="val">75</span> }
+}
+
+<span class="cmt">// Response</span>
+{ <span class="str">"id"</span>: <span class="val">42</span>,
+  <span class="str">"recommendation"</span>: <span class="str">"Kill PID 1234"</span>,
+  <span class="str">"reasoning"</span>: <span class="str">"Process using 60% CPU"</span>,
+  <span class="str">"confidenceScore"</span>: <span class="val">87</span>,
+  <span class="str">"status"</span>: <span class="str">"PENDING"</span> }</pre></div></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/automation/actions</span>
-              <span class="ep-summary">Storico azioni</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Lista completa di tutte le azioni eseguite, con status e timestamp. Usato dalla Dashboard per mostrare la history.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/aidecision/pending</span><span class="ep-summary">Decisioni in attesa</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Lista tutte le decisioni con status PENDING. Usato dalla pagina AI Approvals.</p></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method get">GET</span>
-              <span class="ep-path">/api/automation/pending</span>
-              <span class="ep-summary">Azioni in attesa</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Restituisce tutte le azioni con status PENDING. Usato dall'Automation Engine per sapere cosa deve ancora eseguire.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/aidecision/{id}/approve</span><span class="ep-summary">Approva decisione</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Admin approva la decisione. Status → APPROVED. L'azione non viene ancora eseguita.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"notes"</span>: <span class="str">"Approved after review"</span> }</pre></div></div>
           </div>
-
           <div class="endpoint">
-            <div class="ep-header" onclick="toggle(this)">
-              <span class="method put">PUT</span>
-              <span class="ep-path">/api/automation/action/{id}/status</span>
-              <span class="ep-summary">Aggiorna status azione</span>
-            </div>
-            <div class="ep-body">
-              <p class="ep-desc">Aggiorna lo status di un'azione (PENDING → EXECUTING → DONE/FAILED). Permette il tracking del ciclo di vita completo.</p>
-            </div>
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/aidecision/{id}/reject</span><span class="ep-summary">Rifiuta decisione</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Admin rifiuta la decisione. Status → REJECTED. Loggato nell'AIAuditLog.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/aidecision/{id}/execute</span><span class="ep-summary">Esegui decisione</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Esegue una decisione APPROVED. Solo azioni precedentemente approvate possono essere eseguite. Status → EXECUTED/FAILED.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/aidecision/history</span><span class="ep-summary">Storico decisioni</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Storico completo di tutte le decisioni. Query param: <code style="font-family:var(--font-mono);color:var(--accent)">?limit=50</code></p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method get">GET</span><span class="ep-path">/api/aidecision/status/enabled</span><span class="ep-summary">Stato AI</span><span class="ep-auth">Auth</span></div>
+            <div class="ep-body"><p class="ep-desc">Verifica se il sistema AI è abilitato. Gestito tramite SystemSettings nel DB.</p></div>
+          </div>
+          <div class="endpoint">
+            <div class="ep-header" onclick="toggle(this)"><span class="method post">POST</span><span class="ep-path">/api/aidecision/status/enabled</span><span class="ep-summary">Toggle AI</span><span class="ep-auth">Admin</span></div>
+            <div class="ep-body"><p class="ep-desc">Abilita o disabilita il sistema AI. Solo admin.</p>
+            <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">json</span></div>
+            <pre>{ <span class="str">"enabled"</span>: <span class="kw">true</span> }</pre></div></div>
           </div>
         </div>
 
         <!-- QUICKSTART -->
         <div class="api-group" id="quickstart">
           <h3 class="api-group-title">Quick Start</h3>
-          <div class="qs-grid">
-            <div class="qs-card">
-              <h4>Test metriche</h4>
-              <p>Invia una metrica di test al backend con curl.</p>
-              <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">bash</span></div>
-              <pre>curl -X POST \
-  http://localhost:5000/api/system \
+          <div class="code-block">
+            <div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">bash — curl examples</span></div>
+            <pre><span class="cmt"># 1. Crea admin (solo se DB vuoto)</span>
+curl -X POST http://localhost:5000/api/auth/init-admin \
   -H <span class="str">"Content-Type: application/json"</span> \
-  -d <span class="str">'{
-    "cpuPercent": 45.5,
-    "ramPercent": 60.2,
-    "hostname": "test-host"
-  }'</span></pre></div>
-            </div>
-            <div class="qs-card">
-              <h4>Stato agenti</h4>
-              <p>Verifica tutti gli agent connessi e il loro stato.</p>
-              <div class="code-block"><div class="code-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="code-lang">bash</span></div>
-              <pre><span class="t-dim"># Lista agenti</span>
-curl http://localhost:5000/api/agent
+  -d <span class="str">'{"username":"admin","password":"test123","email":"admin@test.com"}'</span>
 
-<span class="t-dim"># Alert attivi</span>
-curl http://localhost:5000/api/alert\
-  ?resolved=false
+<span class="cmt"># 2. Login (salva cookie)</span>
+curl -X POST http://localhost:5000/api/auth/login \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -c cookies.txt \
+  -d <span class="str">'{"username":"admin","password":"test123"}'</span>
 
-<span class="t-dim"># Statistiche sistema</span>
-curl http://localhost:5000/api/system/stats</pre></div>
-            </div>
+<span class="cmt"># 3. Statistiche sistema</span>
+curl http://localhost:5000/api/system/stats -b cookies.txt
+
+<span class="cmt"># 4. Genera decisione AI</span>
+curl -X POST http://localhost:5000/api/aidecision/generate \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -b cookies.txt \
+  -d <span class="str">'{"hostname":"server-01","alertType":"HIGH_CPU","metrics":{"cpu":95}}'</span>
+
+<span class="cmt"># 5. Kill process (admin only)</span>
+curl -X POST http://localhost:5000/api/process/kill \
+  -H <span class="str">"Content-Type: application/json"</span> \
+  -b cookies.txt \
+  -d <span class="str">'{"pid":1234,"reason":"High CPU"}'</span></pre>
           </div>
         </div>
 
@@ -349,18 +305,12 @@ curl http://localhost:5000/api/system/stats</pre></div>
         <a href="index.html">Home</a>
         <a href="progetto.html">Progetto</a>
         <a href="architettura.html">Architettura</a>
-        <a href="contatti.html">Contatti</a>
       </nav>
-      <span class="footer-copy">2025 — AIROP by CodeCraft</span>
+      <span class="footer-copy">© 2026 AIROP by CodeCraft</span>
     </div>
   </footer>
 </div>
 <script src="script.js"></script>
-<script>
-function toggle(header) {
-  const body = header.nextElementSibling;
-  body.classList.toggle('open');
-}
-</script>
+<script>function toggle(h){h.nextElementSibling.classList.toggle('open');}</script>
 </body>
 </html>
